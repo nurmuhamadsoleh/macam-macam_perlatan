@@ -193,30 +193,31 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 10px;
-	margin-bottom: 5px;
 }
-form {
+/*form {
 	border-radius: 5px;
 	background-color: #bfb0b0;
-	/*width: 50%;*/
-}
-fieldset {
-	border: solid 5px #665f5f;
-	border-radius: 5px;
-}
+	width: 40%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}*/
 td {
-	padding: 5px;
+	padding-bottom: 5px;
+	margin: 1px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-end;
 }
+/*.button button{
+	margin-top: 250px;
+	margin-left: -150px;
+	margin-bottom: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}*/
 [type="submit"] {
-	background-color: #e05555;
-	width: 80px;
-	height: 30px;
-	display: block;
-	border-radius: 5px;
-	border: solid 5px red;
-}
-[type="reset"] {
 	background-color: #e05555;
 	width: 80px;
 	height: 30px;
