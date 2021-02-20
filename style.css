@@ -43,7 +43,6 @@
 		border-spacing: 0;
 	}
 
-	/*Akhir Reset CSS*/
 	body {
 		font-size: 18px;
 		font-family: 'Teko', sans-serif;
@@ -184,6 +183,7 @@
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 		grid-gap: 10px;
+		margin-bottom: 15px;
 	}
 	.service {
 		padding: 15px;
@@ -232,26 +232,171 @@
 		box-shadow: 0 5px 5px rgba(0,0,0,0.15);
 
 	}
-	.service input {
-	}
 	/*Gallery*/
-	 h2 {
-		font-weight: bolder;
-		text-align: center;
-		margin-top: 10px;
-		font-size: 32px;
+	.box{
+		width: 93%;
+		background-color: white;
+		margin: auto;
+		padding: 15px;
+		box-shadow: 0px 0px 3px 3px rgba(0,0,0,0.3);
+		border-radius: 5px;
 	}
-	.gallery {
+	.gallery li {
+		width: 120px;
+		height: 120px;
+		border: 5px solid #666;
+		float: left;
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
-		grid-gap: 5px;
-		/*margin: auto;*/
+		justify-content: center;
+		align-items: center;
+		margin-right: 15px;
+		/*margin-left: 60px;*/
+		margin-bottom: 10px;
+		position: relative;
 	}
-	.gallery h2 {
-		grid-column: 1 / -1;
+	.gallery li,
+	.gallery li img.img,
+	.gallery li span {
+		border-radius: 50%;
+	}
+	.gallery li span {
+		display: block;
+		width: 120px;
+		height: 120px;
+		background-color: rgba(200,200,200,0.5);
+		position: absolute;
+		top: 0;
 		text-align: center;
+		line-height: 120px;
+		color: #333;
+		text-shadow: 1px 1px 1px #ddd;
+		transform: scale(0) rotate(0);
+		opacity: 0;
+		transition: 4s;
 	}
+	.gallery li a:hover span {
+		opacity: 1;
+		transform: scale(1) rotate(360deg);
+	}
+	.overlay {
+		width: 0;
+		height: 0;
+		overflow: hidden;
+		position: fixed;
+		top: 0;
+		left: 0;
+		background-color: rgba(0,0,0,0);
+		z-index: 9999;
+		transition: .8s;
+		border-radius: none;
+		text-align: center;
+		padding: 100px 0;
+	}
+	.overlay:target{
+		width: auto;
+		height: auto;
+		right: 0;
+		bottom: 0;
+		background-color: rgba(0,0,0,0.8);
+	}
+	.overlay .close{
+		position: absolute;
+		top: 78px;
+		right: 23%;
+		text-decoration: none;
+		color: blue;
+		background-color: #bd332a;
+		border-radius: 50%;
+		width: 10px;
+		height: 10px;
+		line-height: 10px;
+		padding: 10px;
+		z-index: 999;
+		opacity: 0;
+	}
+	.overlay img{
+		max-height: 100%;
+		border-radius: 10px;
+		box-shadow: 2px 2px 7px rgba(0,0,0,0.5);
+	}
+	.overlay:target img{
+		animation: zoomDanFade 2s;
+	}
+	.overlay:target .next,
+	.overlay:target .prev{
+		animation: fadeAjah 6s forwards;
+	}
+	.overlay:target .close{
+		animation: slideDownFade 2s forwards;
+	}
+	/*Navigasi*/
+	.next,
+	.prev{
+		position: absolute;
+		top: 40%;
+		margin-left: 14px;
+		text-indent: -9999px;
+		width: 96px;
+		height: 96px;
+		background-image: url('img/full/right-arrow.png');
+		opacity: 0;
+	}
+	.prev{
+		background-image: url('img/full/left-arrow.png');
+		margin-left: -110px;
+	}
+	@keyframes zoomDanFade{
+		0%{
+			transform: scale(0);
+			opacity: 0;
+		}
+		100%{
+			transform: scale(1);
+			opacity: 1;
+		}
+	}
+	@keyframes fadeAjah {
+		0%{
+			opacity: 0;
+		}
+		100%{
+			opacity: 1;
+		}
+	}
+	@keyframes slideDownFade{
+		from{
+			opacity: 0;
+			margin-top: -50px;
+		}
+		to{
+			opacity: 1;
+			margin-top: 0px;
+		}
+	}
+	/*h2 {
+		font-weight: bolder;
+		font-size: 32px;
+		margin-top: 10px;
+		font-size: 80px;
+		text-align: center;
+		text-shadow: 1px 1px 1px white;
+	}
+	.gallery{
+		margin-top: 10px;
+		margin-left: 8px;
+		margin-right: 8px;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+		grid-gap: 2px;
+	}
+	.gallery h2{
+		grid-column-start: 1;
+		grid-column-end: -1;
+		text-align: center;
+	}*/
+	/*END Gallery*/
 	.footer {
+		margin-top: 20px;
 		background-color: #323ea8;
 		padding: 15px;
 	}
@@ -321,13 +466,35 @@
 			opacity: 1;
 			transform: translateY(0);
 			}
-		}
 	@media screen and (max-width: 600px){
 		body {
 			margin: 15px;
 		}
 		.gallery {
 			margin-left: 7.5px;
+		}
+		.overlay img{
+			/*position: absolute;
+			top: 0;*/
+			margin-top: 45%;
+			width: 200px;
+			height: 200px;
+
+		}
+		.overlay .close{
+			position: absolute;
+			top: 32%;
+			right: 21%;
+			text-decoration: none;
+			color: blue;
+			background-color: #bd332a;
+			border-radius: 50%;
+			width: 10px;
+			height: 10px;
+			line-height: 10px;
+			padding: 10px;
+			z-index: 999;
+			opacity: 0;
 		}
 		.header {
 			grid-template-areas: 
